@@ -1,8 +1,3 @@
-# Lets hook in the /mysql-setup.sh to the /create_mysql_admin_user.sh script.
-perl -p -i -e 's/echo "=> Done!"/. \/mysql-setup.sh
-echo "=> Done!"/' /create_mysql_admin_user.sh 
-
-#
 # Install respond.
 rm -fr /app; mkdir /app; cd /app
 git clone https://github.com/madoublet/respond.git .
