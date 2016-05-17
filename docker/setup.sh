@@ -1,6 +1,21 @@
 # Install respond.
-rm -fr /app; mkdir /app; cd /app
-git clone --depth=1 -b ${RESPOND_BRANCH} ${RESPOND_REPO} .
+rm -fr /app
+if [ -z "${RESPOND_TGZ_DOWNLOAD}" ]; then
+  mkdir /app
+  git clone --depth=1 -b ${RESPOND_BRANCH} ${RESPOND_REPO} /app
+else
+  apt-get -y install wget
+  cd /tmp
+  wget -O app.tgz ${RESPOND_TGZ_DOWNLOAD}
+  mkdir /tmp/apptgz
+  # The zip should contain exactly one directory on top level, but we do not know its name.
+  # So we unzip it to a temporary directory and mv the subfolder to /app
+  tar xzf app.tgz -C /tmp/apptgz
+  mv /tmp/apptgz/*/ /app
+  rmdir /tmp/apptgz
+  rm app.tgz
+fi
+
 mkdir /app/sites
 cat /app/setup.php | sed s/dbuser/root/ | sed s/dbpass// > /app/setup.local.php
 
