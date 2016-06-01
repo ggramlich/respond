@@ -1,7 +1,6 @@
 # Install respond.
 rm -fr /app; mkdir /app; cd /app
-git clone https://github.com/madoublet/respond.git .
-git checkout origin/dev -B dev
+git clone --depth=1 -b ${RESPOND_BRANCH} ${RESPOND_REPO} .
 mkdir /app/sites
 cat /app/setup.php | sed s/dbuser/root/ | sed s/dbpass// > /app/setup.local.php
 

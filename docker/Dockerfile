@@ -1,6 +1,9 @@
 # Start from a Lamp container https://github.com/tutumcloud/lamp 
 FROM tutum/lamp:latest
 
+ARG RESPOND_REPO=https://github.com/madoublet/respond.git
+ARG RESPOND_BRANCH=master
+
 # Copy in the current dir as the respond app
 COPY setup.sh /setup.sh
 COPY mysql-setup.sh /mysql-setup.sh
