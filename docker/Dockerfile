@@ -1,5 +1,5 @@
 # Start from a Lamp container https://github.com/tutumcloud/lamp 
-FROM tutum/lamp:latest
+FROM gramlich/armv7-lamp:14.04
 
 RUN apt-get update && apt-get install -y wget
 
@@ -14,7 +14,7 @@ ARG RESPOND_BRANCH=master
 ARG RESPOND_TGZ_DOWNLOAD=""
 
 # Install dockerize for templating with setup.local.php.tmpl
-ENV CPU_ARCH=amd64
+ENV CPU_ARCH=armhf
 ENV DOCKERIZE_VERSION v0.2.0
 ENV DOCKERIZE_TGZ=dockerize-linux-$CPU_ARCH-$DOCKERIZE_VERSION.tar.gz
 RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/$DOCKERIZE_TGZ \
