@@ -8,17 +8,17 @@
 	define('DB_HOST', 'localhost');
 	define('DB_NAME', 'respond');
 	define('DB_USER', '<% default .Env.DB_USER "root" %>');
-	define('DB_PASSWORD', '<% .Env.DB_PASSWORD %>');
+	define('DB_PASSWORD', '<% default .Env.DB_PASSWORD "" %>');
 
 	// If not set, we figure it out baded on the HTTP request.
-    define('APP_URL', detectedAppURL());
+    define('APP_URL', <% if .Env.APP_URL %>'<% .Env.APP_URL %>'<% else %>detectedAppURL()<% end %>);
 
 	/************************************/
 	/*  ADVANCED SETUP - LANGUAGES      */
 	/************************************/
 
 	// Setup default language for the site
-	define('DEFAULT_LANGUAGE', 'en');
+	define('DEFAULT_LANGUAGE', '<% default .Env.DEFAULT_LANGUAGE "en" %>');
 
 	// Setup the default text direction for the site (ltr, rtl, auto)
 	define('DEFAULT_DIRECTION', 'ltr');
@@ -42,8 +42,8 @@
 	define('BRAND_ICON', 'images/respond-icon.png');
 
 	// Copyright and default email
-	define('COPY', 'Made by Matthew Smith in Manchester, MO');
-	define('EMAIL', 'sample@adminemail.com');
+	define('COPY', '<% default .Env.COPY "Made by Matthew Smith in Manchester, MO" %>');
+	define('EMAIL', '<% default .Env.EMAIL "sample@adminemail.com" %>');
 
 
 	/************************************/
@@ -82,7 +82,7 @@
 	define('URL_MODE', '#');
 
 	// Image prefix (the protocol to use for accessing images, prefixes the domain name)
-	define('IMAGE_PREFIX', 'http://');
+	define('IMAGE_PREFIX', '<% default .Env.IMAGE_PREFIX "http://" %>');
 
 
 	/************************************/
@@ -101,10 +101,10 @@
 	/************************************/
 
 	// Passcode
-	define('PASSCODE', 'iloverespond');
+	define('PASSCODE', '<% default .Env.PASSCODE "iloverespond" %>');
 
 	// JWT key
-	define('JWT_KEY', 'iloverespond');
+	define('JWT_KEY', '<% default .Env.JWT_KEY "iloverespond" %>');
 
 
 	/************************************/
@@ -129,7 +129,7 @@
 
 	// Cross Origin Resource Sharing (CORS)
 	define ('CORS', serialize (array (
-	    'http://sites.myrespond.com'
+	    <% if .Env.CORS %><% range (split .Env.CORS ",") %>'<% . %>', <% end %><% else %>'http://sites.myrespond.com'<% end %>
 	    )));
 
 	/************************************/
@@ -203,7 +203,7 @@
 	/************************************/
 
     // Debugging
-	define('DEBUG', true);
+	define('DEBUG', <% default .Env.DEBUG "true" %>);
 
 	if(DEBUG){
 		error_reporting(E_ALL);
