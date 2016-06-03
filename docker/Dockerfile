@@ -24,6 +24,7 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
 ADD setup.sh /
 ADD mysql-setup.sh /
 ADD setup.local.php.tmpl /
+ADD respond-virtualhost.conf.tpl /
 ADD update-templates-and-run.sh /
 RUN bash /setup.sh && rm /setup.sh
 
