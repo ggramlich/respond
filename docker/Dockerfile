@@ -24,9 +24,9 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
 ADD setup.sh /
 ADD mysql-setup.sh /
 ADD setup.local.php.tmpl /
-ADD update-setup-local-php-and-run.sh /
+ADD update-templates-and-run.sh /
 RUN bash /setup.sh && rm /setup.sh
 
 EXPOSE 80 3306
 VOLUME ["/app/sites", "/var/lib/mysql"]
-CMD ["/update-setup-local-php-and-run.sh"]
+CMD ["/update-templates-and-run.sh"]
