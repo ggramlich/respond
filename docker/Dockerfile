@@ -1,7 +1,7 @@
 # Start from a Lamp container https://github.com/tutumcloud/lamp 
 FROM tutum/lamp:latest
 
-RUN apt-get update && apt-get install -y wget
+RUN apt-get update && apt-get install -y wget php5-gd
 
 # You can override the following ARG with --build-arg on the docker build
 # (requires docker >=v1.9)
